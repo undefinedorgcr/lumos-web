@@ -79,18 +79,11 @@ export default function Navbar() {
 							Cover
 						</Link>
 						<Link
-							href="/pools"
+							href="/claim"
 							className="text-gray-400 hover:text-white transition-colors duration-300"
 							onClick={() => setIsMenuOpen(false)}
 						>
 							New Claim
-						</Link>
-						<Link
-							href="/pools"
-							className="text-gray-400 hover:text-white transition-colors duration-300"
-							onClick={() => setIsMenuOpen(false)}
-						>
-							All Claims
 						</Link>
 					</div>
 					<div className="flex justify-center mt-4">
