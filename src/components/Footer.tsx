@@ -25,7 +25,7 @@ const Footer = (): React.JSX.Element => {
 
 					<div className="flex space-x-4">
 						<a
-							className="p-2 rounded-md bg-black bg-opacity-30 hover:bg-white hover:text-black transition-all duration-500"
+							className="p-2 rounded-md bg-opacity-30 hover:bg-white hover:text-black transition-all duration-500"
 							href="https://github.com/undefinedorgcr"
 							target="_blank"
 							aria-label="GitHub"
@@ -41,7 +41,7 @@ const Footer = (): React.JSX.Element => {
 							</svg>
 						</a>
 						<a
-							className="p-2 rounded-md bg-black bg-opacity-30 hover:bg-white hover:text-black transition-all duration-500"
+							className="p-2 rounded-md bg-opacity-30 hover:bg-white hover:text-black transition-all duration-500"
 							href="https://x.com/lumosapp_"
 							target="_blank"
 							aria-label="X"
@@ -57,7 +57,7 @@ const Footer = (): React.JSX.Element => {
 							</svg>
 						</a>
 						<a
-							className="p-2 rounded-md bg-black bg-opacity-30 hover:bg-white hover:text-black transition-all duration-500"
+							className="p-2 rounded-md bg-opacity-30 hover:bg-white hover:text-black transition-all duration-500"
 							href="https://discord.gg/sEpnC6JB2U"
 							target="_blank"
 							aria-label="Discord"
@@ -73,7 +73,7 @@ const Footer = (): React.JSX.Element => {
 							</svg>
 						</a>
 						<a
-							className="p-2 rounded-md bg-black bg-opacity-30 hover:bg-white hover:text-black transition-all duration-500"
+							className="p-2 rounded-md bg-opacity-30 hover:bg-white hover:text-black transition-all duration-500"
 							href="https://t.me/+zB6wXUOsWptjNzQx"
 							target="_blank"
 							aria-label="Telegram"
@@ -92,61 +92,6 @@ const Footer = (): React.JSX.Element => {
 				</div>
 
 				<div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-					{/* <div className="space-y-4">
-						<h3 className="text-sm font-semibold uppercase tracking-wider">
-							Company
-						</h3>
-						<ul className="space-y-2">
-							<li>
-								<Link
-									href="/about"
-									className="text-gray-400 hover:text-white transition-colors duration-300 text-sm"
-								>
-									About Us
-								</Link>
-							</li>
-							<li>
-								<Link
-									href="/knowmore"
-									className="text-gray-400 hover:text-white transition-colors duration-300 text-sm"
-								>
-									Know More
-								</Link>
-							</li>
-						</ul>
-					</div> */}
-
-					{/* <div className="space-y-4">
-						<h3 className="text-sm font-semibold uppercase tracking-wider">
-							Tools
-						</h3>
-						<ul className="space-y-2">
-							<li>
-								<Link
-									href="/calculators"
-									className="text-gray-400 hover:text-white transition-colors duration-300 text-sm"
-								>
-									Calculators
-								</Link>
-							</li>
-							<li>
-								<Link
-									href="/mypositions"
-									className="text-gray-400 hover:text-white transition-colors duration-300 text-sm"
-								>
-									Positions
-								</Link>
-							</li>
-							<li>
-								<Link
-									href="/pools"
-									className="text-gray-400 hover:text-white transition-colors duration-300 text-sm"
-								>
-									Pools
-								</Link>
-							</li>
-						</ul>
-					</div> */}
 
 					<div className="space-y-4">
 						<h3 className="text-sm font-semibold uppercase tracking-wider">
@@ -162,14 +107,6 @@ const Footer = (): React.JSX.Element => {
 									Contact Us
 								</a>
 							</li>
-							{/* <li>
-								<Link
-									href="/profile"
-									className="text-gray-400 hover:text-white transition-colors duration-300 text-sm"
-								>
-									My Account
-								</Link>
-							</li> */}
 						</ul>
 					</div>
 				</div>
