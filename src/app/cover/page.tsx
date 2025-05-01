@@ -6,18 +6,22 @@ import Navbar from '@/components/Navbar';
 import { gtamerica } from '@/lib/fonts';
 import Footer from '@/components/Footer';
 import { Shield, Wallet } from 'lucide-react';
+import { useAtomValue } from 'jotai';
+import { walletStarknetkitLatestAtom } from '@/state/ConnectedWallet';
 
 const NewCoverPage = () => {
     const [step, setStep] = useState<'select' | 'details'>('select');
     const [selectedProtocol, setSelectedProtocol] = useState<string | null>(null);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const [isConnected, setIsConnected] = useState(false);
     const [isXVerified, setIsXVerified] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
     
     const [selectedToken, setSelectedToken] = useState('STRK');
     const [isTokenDropdownOpen, setIsTokenDropdownOpen] = useState(false);
     const tokenDropdownRef = useRef<HTMLDivElement>(null);
+
+    const wallet = useAtomValue(walletStarknetkitLatestAtom);
+    const [isConnected, setIsConnected] = useState(wallet ? true : false);
     
     const tokens = [
         { symbol: 'STRK', color: '#8B9E93' },
@@ -35,6 +39,11 @@ const NewCoverPage = () => {
         { name: 'MySwap', risk: 'High', tvl: '$15M', icon: '🟠' },
         { name: '10KSwap', risk: 'Medium', tvl: '$35M', icon: '🟢' },
     ];
+
+    const formatAddress = (address: string) => {
+		if (!address) return '';
+		return `${address.substring(0, 6)}...${address.substring(address.length - 4)}`;
+	};
 
     const toggleDropdown = () => {
         setIsDropdownOpen(!isDropdownOpen);
@@ -215,7 +224,6 @@ const NewCoverPage = () => {
                                 </div>
 
                                 {/* Wallet Connection */}
-                                {/* TODO: implement with wallet connector */}
                                 <div className="mb-8">
                                     <h2 className="text-xl mb-4 flex items-center">
                                         <Wallet className="mr-2" />
@@ -224,20 +232,20 @@ const NewCoverPage = () => {
                                     <motion.button
                                         whileTap={{ scale: 0.98 }}
                                         onClick={() => setIsConnected(true)}
-                                        disabled={!selectedProtocol}
-                                        className={`w-full p-4 rounded-xl flex items-center justify-center space-x-2 transition-all duration-300 ${!selectedProtocol ? 'bg-[#212322] text-[#8B9E93] cursor-not-allowed' : isConnected ? 'bg-[#1B1C1B] border border-[#8B9E93]' : 'bg-[#8B9E93] text-[#1B1C1B] hover:bg-[#D6E8DC] cursor-pointer'}`}
+                                        disabled={true}
+                                        className={`w-full p-4 rounded-xl flex items-center justify-center space-x-2 transition-all duration-300 bg-[#1B1C1B] border border-[#8B9E93]`}
                                     >
-                                        {isConnected ? (
+                                        {wallet ? (
                                             <>
                                                 <span>Wallet Connected</span>
                                                 <FiCheck />
                                             </>
                                         ) : (
-                                            <span>Connect Wallet</span>
+                                            <span>Please connect your wallet</span>
                                         )}
                                     </motion.button>
                                     
-                                    {isConnected && (
+                                    {wallet && (
                                         <motion.div 
                                             initial={{ opacity: 0 }}
                                             animate={{ opacity: 1 }}
@@ -245,11 +253,11 @@ const NewCoverPage = () => {
                                         >
                                             <div className="flex justify-between items-center">
                                                 <span className="text-sm text-[#8B9E93]">Connected Address</span>
-                                                <span className="text-sm">0x76f...3a9c</span>
+                                                <span className="text-sm">{formatAddress(wallet.account)}</span>
                                             </div>
                                             <div className="flex justify-between items-center mt-2">
                                                 <span className="text-sm text-[#8B9E93]">Network</span>
-                                                <span className="text-sm">Starknet</span>
+                                                <span className="text-sm">{wallet.chainId}</span>
                                             </div>
                                         </motion.div>
                                     )}
@@ -264,8 +272,8 @@ const NewCoverPage = () => {
                                     <motion.button
                                         whileTap={{ scale: 0.98 }}
                                         onClick={() => setIsXVerified(true)}
-                                        disabled={!isConnected}
-                                        className={`w-full p-4 rounded-xl flex items-center justify-center space-x-2 transition-all duration-300 ${!isConnected ? 'bg-[#212322] text-[#8B9E93] cursor-not-allowed' : isXVerified ? 'bg-[#1B1C1B] border border-[#8B9E93]' : 'bg-[#8B9E93] text-[#1B1C1B] hover:bg-[#D6E8DC] hover:cursor-pointer'}`}
+                                        disabled={!selectedProtocol && !wallet}
+                                        className={`w-full p-4 rounded-xl flex items-center justify-center space-x-2 transition-all duration-300 ${!wallet || !selectedProtocol ? 'bg-[#212322] text-[#8B9E93] cursor-not-allowed' : isXVerified ? 'bg-[#1B1C1B] border border-[#8B9E93]' : 'bg-[#8B9E93] text-[#1B1C1B] hover:bg-[#D6E8DC] hover:cursor-pointer'}`}
                                     >
                                         {isXVerified ? (
                                             <>
@@ -300,8 +308,8 @@ const NewCoverPage = () => {
                                     <motion.button
                                         whileTap={{ scale: 0.97 }}
                                         onClick={() => setStep('details')}
-                                        disabled={!selectedProtocol || !isConnected}
-                                        className={`px-6 py-3 rounded-lg flex items-center space-x-2 ${!selectedProtocol || !isConnected ? 'bg-[#212322] text-[#8B9E93] cursor-not-allowed' : 'custom-button'}`}
+                                        disabled={!selectedProtocol || !wallet}
+                                        className={`px-6 py-3 rounded-lg flex items-center space-x-2 ${!selectedProtocol || !wallet ? 'bg-[#212322] text-[#8B9E93] cursor-not-allowed' : 'custom-button'}`}
                                     >
                                         <span>Continue</span>
                                         <FiArrowRight />
