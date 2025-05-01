@@ -1,8 +1,8 @@
 import { atomWithStorage } from 'jotai/utils';
-import { StarknetWindowObject } from 'starknetkit';
+import { ConnectorData } from 'starknetkit';
 
 export const walletStarknetkitLatestAtom = atomWithStorage<
-	undefined | null | StarknetWindowObject
+	undefined | null | any
 >('walletStarknetkitLatest', undefined, 
     {
 		getItem: (key) => {
